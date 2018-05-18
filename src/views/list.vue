@@ -14,8 +14,10 @@
           <span>颜色：</span>
           <span
             class="list-control-filter-item"
+            :class="{ on: item === filterColor }"
             v-for="item in colors"
-            :key="item">{{item}}</span>
+            :key="item"
+            @click="handleFilterColor(item)">{{item}}</span>
         </div>
       </div>
   </div>
@@ -26,7 +28,8 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
-      filterBrand: ''
+      filterBrand: '',
+      filterColor: ''
     }
   },
   computed: {
@@ -39,6 +42,9 @@ export default {
   methods: {
     handleFilterBrand (brand) {
       this.filterBrand = this.filterBrand === brand ? '' : brand
+    },
+    handleFilterColor (color) {
+      this.filterColor = this.filterColor === color ? '' : color
     }
   }
 }
@@ -64,5 +70,7 @@ export default {
   }
   .list-control-filter-item.on{
     background:  #f2352e;
+    border: 1px solid #f2352e;
+    color: #fff;
   }
 </style>
