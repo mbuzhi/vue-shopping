@@ -43,6 +43,7 @@ export default {
     handleFilterBrand (brand) {
       this.filterBrand = this.filterBrand === brand ? '' : brand
     },
+    // 增加颜色过滤
     handleFilterColor (color) {
       this.filterColor = this.filterColor === color ? '' : color
     }
