@@ -62,8 +62,10 @@ export default {
       order: ''
     }
   },
+  mounted () {
+    this.getProductList()
+  },
   computed: {
-    ...mapActions(['getProductList']),
     ...mapGetters(['list', 'brands', 'colors']),
     filterAndOrderedList () {
       let curList = [...this.list]
@@ -85,10 +87,8 @@ export default {
       return curList
     }
   },
-  mounted () {
-    this.getProductList()
-  },
   methods: {
+    ...mapActions(['getProductList']),
     handleFilterBrand (brand) {
       this.filterBrand = this.filterBrand === brand ? '' : brand
     },

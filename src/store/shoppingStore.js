@@ -18,8 +18,8 @@ function getFilterArray (array) {
   return res
 }
 const state = {
-  testId: 111333,
-  productList: []
+  productList: [],
+  cartList: []
 }
 const getters = {
   list: (state) => {
@@ -35,6 +35,28 @@ const getters = {
 const mutations = {
   setProductList: (state, data) => {
     state.productList = data
+  },
+  addCart: (state, id) => {
+    const isAdded = state.cartList.find(item => item.id === id)
+    if (isAdded) {
+      isAdded.count++
+    } else {
+      state.cartList.push({
+        id: id,
+        count: 1
+      })
+    }
+  },
+  editCartCount: (state, payload) => {
+    const product = state.cartList.find(item => item.id === payload.id)
+    product.count += payload.count
+  },
+  deleteCart: (state, id) => {
+    const index = state.carList.findIndex(item => item.id === id)
+    state.cartList.splice(index, 1)
+  },
+  emptyCart: (state) => {
+    state.cartList = []
   }
 }
 const actions = {

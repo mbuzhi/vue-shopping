@@ -5,11 +5,14 @@
       <h4>{{ info.name }}</h4>
       <div class="product-color" :style="{ background:colors[info.color] }"></div>
       <div class="product-cost">{{ info.cost }}</div>
-      <div class="product-add-cart" @click="handleCart">加入购物车</div>
+      <div class="product-add-cart"
+           @click="handleCart">加入购物车</div>
     </router-link>
   </div>
 </template>
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   props: {
     info: Object
@@ -22,6 +25,12 @@ export default {
         '蓝色': '#233472',
         '红色': '#f2352e'
       }
+    }
+  },
+  methods: {
+    ...mapMutations(['addCart']),
+    handleCart () {
+      this.addCart(this.info.id)
     }
   }
 }
@@ -70,5 +79,11 @@ export default {
         color: #fff;
         font-size: 12px;
         border-radius: 3px;
+    }
+     .product-main:hover h4{
+        color: #0070c9;
+    }
+    .product-main:hover .product-add-cart{
+        display: inline-block;
     }
 </style>
