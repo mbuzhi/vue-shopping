@@ -13,7 +13,7 @@ export default new Router({
       component: (resolve) => require(['../views/list.vue'], resolve)
     },
     {
-      path: '/product',
+      path: '/product/:id',
       meta: {
         title: '商品详情'
       },
